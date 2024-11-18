@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đánh giá sản phẩm</title>
+    <link rel="stylesheet" href="./asset/css/reviews.css">
+</head>
+<body>
+    <section class="reviews">
+        <h1>Đánh giá sản phẩm</h1>
+        <section class="review-list" id="review-list">
+            <section class="review-item">
+                <h3>Người dùng A</h3>
+                <p>Rất hài lòng với sản phẩm, chất lượng tuyệt vời!</p>
+                <span class="review-rating">★★★★★</span>
+            </section>
+            <section class="review-item">
+                <h3>Người dùng B</h3>
+                <p>Sản phẩm dùng tốt, nhưng giao hàng hơi chậm.</p>
+                <span class="review-rating">★★★★☆</span>
+            </section>
+        </section>
+        <section class="add-review">
+            <h2>Thêm đánh giá của bạn</h2>
+            <textarea id="review-content" placeholder="Nhập đánh giá của bạn"></textarea>
+            <input type="number" id="review-rating" min="1" max="5" placeholder="Chọn sao (1-5)">
+            <button onclick="addReview()">Gửi đánh giá</button>
+        </section>
+    </section>
+
+    <script>
+        function addReview() {
+            const content = document.getElementById('review-content').value;
+            const rating = document.getElementById('review-rating').value;
+
+            if (content === '' || rating === '') {
+                alert('Vui lòng nhập đầy đủ nội dung và số sao.');
+                return;
+            }
+
+            // Tạo phần tử mới cho đánh giá
+            const newReview = document.createElement('section');
+            newReview.classList.add('review-item');
+
+            // Thêm nội dung cho đánh giá
+            const userName = 'Người dùng mới';  // Có thể thay thế bằng tên người dùng đăng nhập
+            newReview.innerHTML = `
+                <h3>${userName}</h3>
+                <p>${content}</p>
+                <span class="review-rating">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span>
+            `;
+
+            // Thêm đánh giá mới vào danh sách
+            document.getElementById('review-list').appendChild(newReview);
+
+            // Reset form
+            document.getElementById('review-content').value = '';
+            document.getElementById('review-rating').value = '';
+
+            // Chuyển hướng về trang chủ sau khi gửi đánh giá
+            alert('Cảm ơn bạn đã gửi đánh giá!');
+            window.location.href = 'index.html'; // Thay 'index.html' bằng đường dẫn thực tế của trang chủ
+        }
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .reviews {
+        width: 80%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .review-list {
+        margin-bottom: 40px;
+    }
+
+    .review-item {
+        border-bottom: 1px solid #ddd;
+        padding: 20px 0;
+    }
+
+    .review-item h3 {
+        font-size: 20px;
+        color: #007bff;
+    }
+
+    .review-item p {
+        font-size: 16px;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    .review-rating {
+        font-size: 18px;
+        color: #ffcc00;
+    }
+
+    .add-review {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .add-review h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .add-review textarea {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .add-review input[type="number"] {
+        width: 100px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .add-review button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-review button:hover {
+        background-color: #0056b3;
+    }
+</style>
